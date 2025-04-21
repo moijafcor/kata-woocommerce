@@ -1,0 +1,15 @@
+# Fix all expired GPG keys in one shot
+sudo bash -c '
+# Fix OBS Project key (Albert)
+curl -fsSL https://build.opensuse.org/projects/home:manuelschneid3r/public_key | gpg --dearmor -o /etc/apt/trusted.gpg.d/home_manuel.gpg
+
+# Fix Yarn key
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/yarn.gpg
+
+# Fix Google Cloud SDK key
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/google-cloud-sdk.gpg
+'
+
+# Update APT index
+sudo apt update
+
